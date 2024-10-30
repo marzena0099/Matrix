@@ -2,9 +2,6 @@ package org.example;
 
 import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -13,12 +10,21 @@ import java.util.stream.IntStream;
 public class Transposition {
     List<List<Integer>> currentMatrix;
     int degree;
+    String direction;
 
     List<List<Integer>> rotationMatrixXTimes() {
         int timesRotation = degree / 90;
         for (int i = 0; i < timesRotation; i++) {
-            matrixRotate90ClockWise();
+            if (direction.equals("AntiClok")) {
+                matrixAntiClockWise90();
+            } else if (direction.equals("Clock")) {
+                matrixRotate90ClockWise();
+
+            } else {
+                throw new RuntimeException("is not such clock");
+            }
         }
+
         return currentMatrix;
     }
 
@@ -40,5 +46,22 @@ public class Transposition {
         currentMatrix = result;
 
 
+    }
+
+    void matrixAntiClockWise90() {
+        int rows = currentMatrix.size();
+        int cols = currentMatrix.get(0).size();
+
+        List<List<Integer>> res = IntStream.range(0, rows)
+                .mapToObj(i -> IntStream.range(0, cols)
+                        .mapToObj(j -> (Integer) null)
+                        .collect(Collectors.toList()))
+                .toList();
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                res.get(i).set(j, currentMatrix.get(j).get(cols - i - 1));
+            }
+        }
+        currentMatrix = res;
     }
 }

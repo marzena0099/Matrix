@@ -10,8 +10,7 @@ public class Main {
                 Arrays.asList(4, 5, 6,12),
                 Arrays.asList(7, 8, 9,13),
                 Arrays.asList(10,11,12,14)));
-        Transposition transposition = new Transposition(matrix,270);
+        Transposition transposition = new Transposition(matrix,90,"Clock");
         System.out.println(transposition.rotationMatrixXTimes());
-//        System.out.println(transposition.matrixRotate90ClockWise(matrix));
     }
 }
