@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.ProcessingImage.ImageLoader;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,5 +14,7 @@ public class Main {
                 Arrays.asList(10,11,12,14)));
         Transposition transposition = new Transposition(matrix,90,"Clock");
         System.out.println(transposition.rotationMatrixXTimes());
+        ImageLoader imageLoader = new ImageLoader(270);
+        imageLoader.transform();
     }
 }
